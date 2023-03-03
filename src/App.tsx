@@ -15,18 +15,18 @@ function App() {
 		toCurrency,
 		setToCurrency,
 		firstAmount,
-		setFirstAmount,
 	} = useContext(CurrencyContext);
 
 	const [resultCurrency, setResultCurrency] = useState(0);
-	const codeFromCurrency = fromCurrency.split("")[1];
-	const codeToCurrency = toCurrency.split("")[1];
+	const codeFromCurrency = fromCurrency.split(" ")[1];
+	const codeToCurrency = toCurrency.split(" ")[1];
 
 	console.log(resultCurrency);
+	console.log(codeToCurrency);
 
 	useEffect(() => {
 		if (firstAmount) {
-			axios.get("https://api.freecurrencyapi.com/v1/latest", {
+			axios("https://api.freecurrencyapi.com/v1/latest", {
 				params: {
 					apikey: "HLwItm4OQSm4jSjofNkYFMvBd9K8dsgfLhUvMl62",
 					base_currency: codeFromCurrency,
@@ -39,7 +39,7 @@ function App() {
 				.catch((error) => console.log(error));
 		}
 	}, [firstAmount]);
-	
+
 	const boxStyles = {
 		marginTop: "11rem",
 		background: "#49305F",
@@ -69,11 +69,20 @@ function App() {
 			</Grid>
 
 			{firstAmount ? (
-				<Box sx={{textAlign: "left", marginTop: "2rem"}}>
-					<Typography >{firstAmount} 	{fromCurrency} = </Typography>
-					<Typography>{resultCurrency} {toCurrency} </Typography>
+				<Box
+					sx={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}
+				>
+					<Typography>
+						{firstAmount} {fromCurrency} = {" "}
+					</Typography>{" "}
+					
+					<Typography sx={{paddingLeft:"1rem"}}>
+						{resultCurrency} {toCurrency} {" "}
+					</Typography>
 				</Box>
-			) : ""}
+			) : (
+				""
+			)}
 		</Container>
 	);
 }

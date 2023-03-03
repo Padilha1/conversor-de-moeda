@@ -13,7 +13,7 @@ function useAxios(url: string) {
                 const response = await axios(url);
                 setData(response.data)
                 
-            } catch (error) {
+            } catch (error: any) {
                 setError(error)
             } finally {
                 setLoaded(false)
