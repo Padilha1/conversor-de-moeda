@@ -76,7 +76,7 @@ function App() {
 						{firstAmount} {fromCurrency} ={" "}
 					</Typography>{" "}
 					<Typography sx={{ paddingLeft: "1rem", fontWeight: "bold" }}>
-						{resultCurrency * firstAmount} {toCurrency}{" "}
+						{parseFloat(resultCurrency * firstAmount).toFixed(2)} {toCurrency}{" "}
 					</Typography>
 				</Box>
 			) : (
