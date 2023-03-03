@@ -28,7 +28,7 @@ function App() {
 		if (firstAmount) {
 			axios("https://api.freecurrencyapi.com/v1/latest", {
 				params: {
-					apikey: "HLwItm4OQSm4jSjofNkYFMvBd9K8dsgfLhUvMl62",
+					apikey: import.meta.env.VITE_API_KEY,
 					base_currency: codeFromCurrency,
 					currencies: codeToCurrency,
 				},
@@ -38,7 +38,7 @@ function App() {
 				)
 				.catch((error) => console.log(error));
 		}
-	}, [firstAmount]);
+	}, [firstAmount, fromCurrency, toCurrency]);
 
 	const boxStyles = {
 		marginTop: "11rem",
@@ -73,11 +73,10 @@ function App() {
 					sx={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}
 				>
 					<Typography>
-						{firstAmount} {fromCurrency} = {" "}
+						{firstAmount} {fromCurrency} ={" "}
 					</Typography>{" "}
-					
-					<Typography sx={{paddingLeft:"1rem"}}>
-						{resultCurrency} {toCurrency} {" "}
+					<Typography sx={{ paddingLeft: "1rem", fontWeight: "bold" }}>
+						{resultCurrency * firstAmount} {toCurrency}{" "}
 					</Typography>
 				</Box>
 			) : (
