@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 function useAxios(url: string) {
     const [data, setData] = useState([])
@@ -19,11 +19,7 @@ function useAxios(url: string) {
                 setLoaded(false)
             }
         }
-
         fetchData();
-
-
-
     },[url])
 
     return[ data, error, loaded]

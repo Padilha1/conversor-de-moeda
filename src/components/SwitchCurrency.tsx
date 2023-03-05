@@ -4,12 +4,8 @@ import { useContext } from "react";
 import CurrencyContext from "../context/CurrencyContext";
 
 function SwitchCurrency() {
-	// const {
-	// 	fromCurrency,
-	// 	setFromCurrency,
-	// 	toCurrency,
-	// 	setToCurrency,
-	// } = useContext(CurrencyContext);
+	// const { fromCurrency, setFromCurrency, toCurrency, setToCurrency } =
+	// 	useContext(CurrencyContext);
 
 	// const handleSwitch = () => {
 	// 	setToCurrency(fromCurrency);

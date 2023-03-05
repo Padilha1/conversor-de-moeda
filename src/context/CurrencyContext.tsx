@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 
-interface ContextCurrency {
+type ContextCurrency = {
 	fromCurrency: string;
 	setFromCurrency: React.Dispatch<React.SetStateAction<string>>;
 	toCurrency: string;
 	setToCurrency: React.Dispatch<React.SetStateAction<string>>;
 	firstAmount: string;
 	setFirstAmount: React.Dispatch<React.SetStateAction<string>>;
-}
+};
 
 export const CurrencyContext = createContext<ContextCurrency>(
 	{} as ContextCurrency
@@ -24,7 +24,7 @@ const CurrencyProvider = ({ children }: any) => {
 		toCurrency,
 		setToCurrency,
 		firstAmount,
-		setFirstAmount
+		setFirstAmount,
 	};
 
 	return (
