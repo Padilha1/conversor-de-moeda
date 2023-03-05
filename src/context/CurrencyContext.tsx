@@ -5,7 +5,7 @@ type ContextCurrency = {
 	setFromCurrency: React.Dispatch<React.SetStateAction<string>>;
 	toCurrency: string;
 	setToCurrency: React.Dispatch<React.SetStateAction<string>>;
-	firstAmount: string;
+	firstAmount: any;
 	setFirstAmount: React.Dispatch<React.SetStateAction<string>>;
 };
 
