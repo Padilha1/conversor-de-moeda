@@ -1,10 +1,10 @@
 :root,
 ::after,
-::before{
-    box-sizing: border-box;
-    text-align: center;
+::before {
+  box-sizing: border-box;
+  text-align: center;
 }
 
 body {
-    background: #464655;
+  background: rgb(41, 41, 44);
 }

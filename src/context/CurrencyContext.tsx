@@ -1,37 +1,54 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext, ReactNode } from "react";
 
+// Definição do tipo do contexto
 type ContextCurrency = {
-	fromCurrency: string;
-	setFromCurrency: React.Dispatch<React.SetStateAction<string>>;
-	toCurrency: string;
-	setToCurrency: React.Dispatch<React.SetStateAction<string>>;
-	firstAmount: any;
-	setFirstAmount: React.Dispatch<React.SetStateAction<string>>;
+  fromCurrency: string;
+  setFromCurrency: React.Dispatch<React.SetStateAction<string>>;
+  toCurrency: string;
+  setToCurrency: React.Dispatch<React.SetStateAction<string>>;
+  firstAmount: string;
+  setFirstAmount: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const CurrencyContext = createContext<ContextCurrency>(
-	{} as ContextCurrency
+// Criação do Contexto com valor inicial como undefined
+export const CurrencyContext = createContext<ContextCurrency | undefined>(
+  undefined
 );
 
-const CurrencyProvider = ({ children }: any) => {
-	const [fromCurrency, setFromCurrency] = useState("🇧🇷 BRL - Brazil");
-	const [toCurrency, setToCurrency] = useState("🇺🇸 USD - United States");
-	const [firstAmount, setFirstAmount] = useState("");
+// Definição do tipo para as props do Provider
+type CurrencyProviderProps = {
+  children: ReactNode;
+};
 
-	const value = {
-		fromCurrency,
-		setFromCurrency,
-		toCurrency,
-		setToCurrency,
-		firstAmount,
-		setFirstAmount,
-	};
+// Componente Provider
+const CurrencyProvider = ({ children }: CurrencyProviderProps) => {
+  const [fromCurrency, setFromCurrency] = useState("🇧🇷 BRL - Brazil");
+  const [toCurrency, setToCurrency] = useState("🇺🇸 USD - United States");
+  const [firstAmount, setFirstAmount] = useState("");
 
-	return (
-		<CurrencyContext.Provider value={value}>
-			{children}
-		</CurrencyContext.Provider>
-	);
+  const value = {
+    fromCurrency,
+    setFromCurrency,
+    toCurrency,
+    setToCurrency,
+    firstAmount,
+    setFirstAmount,
+  };
+
+  return (
+    <CurrencyContext.Provider value={value}>
+      {children}
+    </CurrencyContext.Provider>
+  );
 };
 
 export default CurrencyProvider;
+
+// Hook customizado para usar o Contexto com segurança
+export const useCurrency = (): ContextCurrency => {
+  const context = useContext(CurrencyContext);
+  if (!context) {
+    throw new Error("useCurrency deve ser usado dentro de um CurrencyProvider");
+  }
+  return context;
+};
